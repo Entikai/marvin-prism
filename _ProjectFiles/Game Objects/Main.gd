@@ -1,10 +1,27 @@
 extends Node
 
+var jump_high_obstacle: PackedScene = preload("res://_ProjectFiles/Game Objects/Obstacles/JumpHigh.tscn")
 
-func _on_Player_state_changed(current_player_color: String, current_player_animation: String ) -> void:
-	#print("Player: " + current_player_color + " " + current_player_animation)
-	pass
+var player_color: String
+var player_avoidance_type: String
+
+var obstacle_color: String
+var obstacle_type: String
 
 
-func _on_ObstacleBase_collided(obstacle_color, obstacle_type) -> void:
-	print("Main messaged by obstacle: " + obstacle_color, obstacle_type)
+func _ready() -> void:
+	instance_new_obstacle(jump_high_obstacle)
+
+
+func instance_new_obstacle(new_obstacle_type: PackedScene) -> void:
+	var obstacle = new_obstacle_type.instance()
+	obstacle.position = Vector2(1400, 380)
+	add_child(obstacle)
+
+
+func _on_Player_collided_with_obstacle(new_player_color, new_player_animation, new_obstacle_color, new_obstacle_type) -> void:
+	player_color = new_player_color
+	player_avoidance_type = new_player_animation
+	obstacle_color = new_obstacle_color
+	obstacle_type = new_obstacle_type
+	print("Player: " + player_color + " " + player_avoidance_type + " Obstacle: " + obstacle_color + " " + obstacle_type)

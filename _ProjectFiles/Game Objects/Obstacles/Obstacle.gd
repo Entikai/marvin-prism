@@ -1,10 +1,8 @@
-extends Area2D
-
-signal collided
+extends KinematicBody2D
 
 onready var all_sprite_colors = $SpriteColors.get_children() #Array of type Node2D
 
-export var obstacle_type: String = "Obstacle type not specifieid! "
+var obstacle_type: String = "Obstacle type not specifieid! "
 var obstacle_color: String = "Obstacle color not specified! "
 
 func _ready() -> void:
@@ -20,7 +18,21 @@ func reveal_random_color() -> void:
 	randomize()
 	var random_sprite_color = all_sprite_colors[randi() % all_sprite_colors.size()]
 	random_sprite_color.visible = true
+	obstacle_color = random_sprite_color.name
 
 
-func _on_Obstacle_body_entered(body: Node) -> void:
-	emit_signal("collided", obstacle_color, obstacle_type)
+#temp movement
+func _process(_delta: float) -> void:
+	move_and_slide(Vector2(-1,0) * 200)
+	remove_if_off_screen()
+	
+
+func get_obstacle_color() -> String:
+	return obstacle_color
+
+func get_obstacle_type() -> String:
+	return obstacle_type
+
+func remove_if_off_screen() ->void:
+	if position.x <= -300:
+		queue_free()

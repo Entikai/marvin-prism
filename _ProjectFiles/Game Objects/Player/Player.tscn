@@ -201,7 +201,7 @@ animations = [ {
 "speed": 1.0
 } ]
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="Area2D"]
 script = ExtResource( 105 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -232,6 +232,7 @@ frames = SubResource( 5 )
 animation = "run"
 frame = 10
 
+[connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
 [connection signal="animation_finished" from="SpriteColors/Blue" to="." method="_on_Blue_animation_finished"]
 [connection signal="animation_finished" from="SpriteColors/Green" to="." method="_on_Green_animation_finished"]
 [connection signal="animation_finished" from="SpriteColors/Red" to="." method="_on_Red_animation_finished"]
