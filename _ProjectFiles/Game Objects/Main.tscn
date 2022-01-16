@@ -1,12 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://_ProjectFiles/Game Objects/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://_ProjectFiles/Game Objects/Main.gd" type="Script" id=2]
+[ext_resource path="res://_ProjectFiles/Game Objects/Obstacles/ObstacleBase.tscn" type="PackedScene" id=3]
 
 [node name="Main" type="Node"]
 script = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 101, 502 )
+position = Vector2( 94, 546 )
+
+[node name="ObstacleBase" parent="." instance=ExtResource( 3 )]
+position = Vector2( 528, 338 )
 
 [connection signal="state_changed" from="Player" to="." method="_on_Player_state_changed"]
+[connection signal="collided" from="ObstacleBase" to="." method="_on_ObstacleBase_collided"]

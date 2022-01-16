@@ -39,13 +39,13 @@ func start_all_animations():
 
 
 func enable_only_one_sprite(color: String) -> void: #INPUT READ
-	for sprite in all_sprite_variations:
-		if sprite.name == color:
-			emit_signal("color_changed", color)
-			sprite.visible = true
-		else:
-			sprite.visible = false
-	update_current_player_state()
+	if get_active_sprite().get_animation() == "run":
+		for sprite in all_sprite_variations:
+			if sprite.name == color:
+				sprite.visible = true
+			else:
+				sprite.visible = false
+		update_current_player_state()
 
 
 func get_active_sprite() -> Node2D:
@@ -102,3 +102,8 @@ func get_current_player_animation() -> String:
 			active_sprite = sprite
 	var current_player_animation: String = active_sprite.get_animation()
 	return current_player_animation
+
+
+#temp movement
+func _process(delta: float) -> void:
+		move_and_slide(Vector2(1,0) * 100)
