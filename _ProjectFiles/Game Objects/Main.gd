@@ -7,25 +7,17 @@ var obstacles = [slide_obstacle, jump_mid_obstacle, jump_high_obstacle]
 
 var last_obstacle_type: int = -1
 
-var player_color: String
-var player_avoidance_type: String
-
-var obstacle_color: String
-var obstacle_type: String
 
 func _ready() -> void:
 	randomize()
 
-func _on_Player_collided_with_obstacle(new_player_color, new_player_animation, new_obstacle_color, new_obstacle_type) -> void:
-	player_color = new_player_color
-	player_avoidance_type = new_player_animation
-	obstacle_color = new_obstacle_color
-	obstacle_type = new_obstacle_type
-	is_player_dead()
+func _on_Player_collided_with_obstacle(player_color, player_avoidance_type, obstacle_color, obstacle_type) -> void:
+	is_player_dead(player_color, player_avoidance_type, obstacle_color, obstacle_type)
 
 
-func is_player_dead() -> void:
-	pass
+func is_player_dead(player_color, player_avoidance_type, obstacle_color, obstacle_type) -> void:
+	if player_color != obstacle_color or player_avoidance_type != obstacle_type:
+		get_tree().reload_current_scene()
 
 
 
