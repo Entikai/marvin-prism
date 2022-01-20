@@ -121,15 +121,15 @@ animations = [ {
 "name": "jump_high",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 14 ), ExtResource( 11 ), ExtResource( 15 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 13 ), ExtResource( 16 ), ExtResource( 1 ), ExtResource( 2 ), ExtResource( 12 ), ExtResource( 3 ), ExtResource( 9 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 21 ), ExtResource( 19 ), ExtResource( 18 ), ExtResource( 24 ), ExtResource( 20 ), ExtResource( 22 ), ExtResource( 23 ) ],
-"loop": true,
-"name": "run",
-"speed": 30.0
-}, {
 "frames": [ ExtResource( 25 ) ],
 "loop": false,
 "name": "jump_mid",
 "speed": 1.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 14 ), ExtResource( 11 ), ExtResource( 15 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 13 ), ExtResource( 16 ), ExtResource( 1 ), ExtResource( 2 ), ExtResource( 12 ), ExtResource( 3 ), ExtResource( 9 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 21 ), ExtResource( 19 ), ExtResource( 18 ), ExtResource( 24 ), ExtResource( 20 ), ExtResource( 22 ), ExtResource( 23 ) ],
+"loop": true,
+"name": "run",
+"speed": 30.0
 } ]
 
 [sub_resource type="SpriteFrames" id=4]
@@ -144,15 +144,15 @@ animations = [ {
 "name": "jump_high",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 57 ), ExtResource( 58 ), ExtResource( 62 ), ExtResource( 56 ), ExtResource( 65 ), ExtResource( 63 ), ExtResource( 66 ), ExtResource( 64 ), ExtResource( 59 ), ExtResource( 54 ), ExtResource( 55 ), ExtResource( 60 ), ExtResource( 61 ), ExtResource( 67 ), ExtResource( 68 ), ExtResource( 53 ), ExtResource( 69 ), ExtResource( 74 ), ExtResource( 76 ), ExtResource( 78 ), ExtResource( 77 ), ExtResource( 72 ), ExtResource( 73 ) ],
-"loop": true,
-"name": "run",
-"speed": 30.0
-}, {
 "frames": [ ExtResource( 75 ) ],
 "loop": false,
 "name": "jump_mid",
 "speed": 1.0
+}, {
+"frames": [ ExtResource( 57 ), ExtResource( 58 ), ExtResource( 62 ), ExtResource( 56 ), ExtResource( 65 ), ExtResource( 63 ), ExtResource( 66 ), ExtResource( 64 ), ExtResource( 59 ), ExtResource( 54 ), ExtResource( 55 ), ExtResource( 60 ), ExtResource( 61 ), ExtResource( 67 ), ExtResource( 68 ), ExtResource( 53 ), ExtResource( 69 ), ExtResource( 74 ), ExtResource( 76 ), ExtResource( 78 ), ExtResource( 77 ), ExtResource( 72 ), ExtResource( 73 ) ],
+"loop": true,
+"name": "run",
+"speed": 30.0
 } ]
 
 [sub_resource type="SpriteFrames" id=3]
@@ -167,15 +167,15 @@ animations = [ {
 "name": "jump_high",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 29 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 31 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 34 ), ExtResource( 40 ), ExtResource( 38 ), ExtResource( 41 ), ExtResource( 39 ), ExtResource( 48 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 47 ), ExtResource( 42 ), ExtResource( 45 ), ExtResource( 49 ), ExtResource( 43 ), ExtResource( 50 ), ExtResource( 44 ), ExtResource( 37 ), ExtResource( 46 ) ],
-"loop": true,
-"name": "run",
-"speed": 30.0
-}, {
 "frames": [ ExtResource( 51 ) ],
 "loop": false,
 "name": "jump_mid",
 "speed": 1.0
+}, {
+"frames": [ ExtResource( 29 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 31 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 34 ), ExtResource( 40 ), ExtResource( 38 ), ExtResource( 41 ), ExtResource( 39 ), ExtResource( 48 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 47 ), ExtResource( 42 ), ExtResource( 45 ), ExtResource( 49 ), ExtResource( 43 ), ExtResource( 50 ), ExtResource( 44 ), ExtResource( 37 ), ExtResource( 46 ) ],
+"loop": true,
+"name": "run",
+"speed": 30.0
 } ]
 
 [sub_resource type="SpriteFrames" id=5]
@@ -190,15 +190,15 @@ animations = [ {
 "name": "jump_high",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 99 ), ExtResource( 100 ), ExtResource( 101 ), ExtResource( 102 ), ExtResource( 83 ), ExtResource( 95 ), ExtResource( 92 ), ExtResource( 89 ), ExtResource( 79 ), ExtResource( 88 ), ExtResource( 86 ), ExtResource( 93 ), ExtResource( 80 ), ExtResource( 94 ), ExtResource( 87 ), ExtResource( 90 ), ExtResource( 81 ), ExtResource( 82 ), ExtResource( 84 ), ExtResource( 91 ), ExtResource( 85 ), ExtResource( 104 ), ExtResource( 103 ) ],
-"loop": true,
-"name": "run",
-"speed": 30.0
-}, {
 "frames": [ ExtResource( 97 ) ],
 "loop": false,
 "name": "jump_mid",
 "speed": 1.0
+}, {
+"frames": [ ExtResource( 99 ), ExtResource( 100 ), ExtResource( 101 ), ExtResource( 102 ), ExtResource( 83 ), ExtResource( 95 ), ExtResource( 92 ), ExtResource( 89 ), ExtResource( 79 ), ExtResource( 88 ), ExtResource( 86 ), ExtResource( 93 ), ExtResource( 80 ), ExtResource( 94 ), ExtResource( 87 ), ExtResource( 90 ), ExtResource( 81 ), ExtResource( 82 ), ExtResource( 84 ), ExtResource( 91 ), ExtResource( 85 ), ExtResource( 104 ), ExtResource( 103 ) ],
+"loop": true,
+"name": "run",
+"speed": 30.0
 } ]
 
 [node name="Player" type="Area2D"]
@@ -232,8 +232,14 @@ frames = SubResource( 5 )
 animation = "run"
 frame = 10
 
+[node name="Tween" type="Tween" parent="."]
+
+[node name="JumpDurationTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
 [connection signal="animation_finished" from="SpriteColors/Blue" to="." method="_on_Blue_animation_finished"]
 [connection signal="animation_finished" from="SpriteColors/Green" to="." method="_on_Green_animation_finished"]
 [connection signal="animation_finished" from="SpriteColors/Red" to="." method="_on_Red_animation_finished"]
 [connection signal="animation_finished" from="SpriteColors/Purple" to="." method="_on_Purple_animation_finished"]
+[connection signal="timeout" from="JumpDurationTimer" to="." method="_on_JumpDurationTimer_timeout"]

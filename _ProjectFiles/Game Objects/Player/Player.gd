@@ -9,6 +9,12 @@ onready var green_node: Node2D = $SpriteColors/Green
 onready var red_node: Node2D = $SpriteColors/Red
 onready var purple_node: Node2D = $SpriteColors/Purple
 
+onready var tween = $Tween
+onready var jump_duration_timer = $JumpDurationTimer
+
+onready var player_start_position = Vector2(position.x, position.y)
+onready var player_jump_high_position = Vector2(position.x, position.y + -80)
+onready var player_jump_mid_position = Vector2(position.x, position.y + -30)
 
 func _ready() -> void:
 	start_all_animations()
@@ -47,6 +53,17 @@ func enable_only_one_sprite(color: String) -> void: #INPUT READ
 				sprite.visible = false
 
 
+func play_jump_and_slide_animation(animation_name: String) -> void: #INPUT READ
+	var active_sprite = get_active_sprite()
+	if active_sprite != null and active_sprite.get_animation() == "run":
+		active_sprite.play(animation_name)
+		if animation_name == "jump_high":
+			tween_jump(player_start_position, player_jump_high_position)
+		elif animation_name == "jump_mid":
+			tween_jump(player_start_position, player_jump_mid_position)
+
+
+
 func get_active_sprite() -> Node2D:
 	var active_sprite: Node2D
 	for sprite in all_sprite_variations:
@@ -55,10 +72,10 @@ func get_active_sprite() -> Node2D:
 	return active_sprite
 
 
-func play_jump_and_slide_animation(animation_name: String) -> void: #INPUT READ
-	var active_sprite = get_active_sprite()
-	if active_sprite != null and active_sprite.get_animation() == "run":
-		active_sprite.play(animation_name)
+func tween_jump(start_position: Vector2, end_position: Vector2) -> void:
+	tween.interpolate_property(self, "position", start_position, end_position, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tween.start()
+	jump_duration_timer.start()
 
 
 func _on_Blue_animation_finished() -> void:
@@ -75,7 +92,6 @@ func _on_Red_animation_finished() -> void:
 
 func _on_Purple_animation_finished() -> void:
 	purple_node.play("run")
-
 
 
 func get_current_player_color() -> String:
@@ -103,3 +119,10 @@ func _on_Player_body_entered(body: Node) -> void:
 	var obstacle_type: String = body.get_obstacle_type()
 	emit_signal("collided_with_obstacle", player_color, player_animation_type, obstacle_color, obstacle_type)
 
+
+func _on_JumpDurationTimer_timeout() -> void:
+	land_if_in_air()
+
+
+func land_if_in_air() ->void:
+	tween_jump(position, player_start_position)

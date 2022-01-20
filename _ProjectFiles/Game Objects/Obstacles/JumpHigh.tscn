@@ -59,15 +59,16 @@ texture = ExtResource( 14 )
 
 [node name="Blue" parent="SpriteColors" index="0"]
 frames = SubResource( 1 )
-frame = 6
+frame = 2
 
 [node name="Green" parent="SpriteColors" index="1"]
 frames = SubResource( 2 )
-frame = 7
+frame = 3
 
 [node name="Red" parent="SpriteColors" index="2"]
 frames = SubResource( 3 )
-frame = 10
+frame = 6
 
 [node name="Purple" parent="SpriteColors" index="3"]
 frames = SubResource( 4 )
+frame = 11

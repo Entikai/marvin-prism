@@ -7,6 +7,11 @@
 script = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 94, 546 )
+position = Vector2( 105, 577 )
+
+[node name="ObstacleSpawnCooldown" type="Timer" parent="."]
+wait_time = 3.5
+autostart = true
 
 [connection signal="collided_with_obstacle" from="Player" to="." method="_on_Player_collided_with_obstacle"]
+[connection signal="timeout" from="ObstacleSpawnCooldown" to="." method="_on_ObstacleSpawnCooldown_timeout"]
